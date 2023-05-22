@@ -1,0 +1,39 @@
+.footer {
+  padding-top: 60px;
+  padding-bottom: 30px;
+  background: var(--primary-color);
+}
+.footer-text {
+  line-height: 30px;
+  color: #fff;
+}
+
+.footer__quick-links ul li {
+  background: transparent !important;
+  color: #fff;
+}
+
+.footer__quick-links ul li a {
+  color: #fff;
+}
+.quick__links-title {
+  margin-bottom: 20px;
+  color: #fff;
+  font-size: 1.1rem;
+}
+.logo {
+  color: #fff;
+}
+.footer__content li span,
+.footer__content li p {
+  color: #fff;
+}
+.footer__content li span {
+  font-size: 1.2rem;
+}
+.footer__copyRight {
+  color: #fff;
+  font-size: 0.9rem;
+  margin-top: 50px;
+  text-align: center;
+}
