@@ -8,6 +8,8 @@ import { motion } from "framer-motion";
 import Services from "../Services/Services";
 import ProductsList from "../components/UI/ProductsList";
 import Product from "../assets/data/products";
+import CounterImage from "../assets/images/counter-timer-img.png";
+import Clock from "../components/UI/Clock";
 
 const Home = () => {
   const [trendingProduct, setTrendingProduct] = useState([]);
@@ -84,6 +86,28 @@ const Home = () => {
                 <h2 className="section__title">Best Sales</h2>
               </Col>
               <ProductsList data={bestSalesProduct} />
+            </Row>
+          </Container>
+        </section>
+        <section className="timer__counter">
+          <Container>
+            <Row>
+              <Col lg="6" md="6">
+                <div className="clock__top__content">
+                  <h4 className="text-white fs-6 mb-2">Limited Offers</h4>
+                  <h3 className="text-white fs-5 mb-3">Quality Armchair</h3>
+                </div>
+                <Clock />
+                <motion.button
+                  whileTap={{ scale: 1.1 }}
+                  className="shop_btn store_btn"
+                >
+                  <Link to="/shop">Visit Store</Link>
+                </motion.button>
+              </Col>
+              <Col lg="6" md="6" className="text-end">
+                <img src={CounterImage} alt="'Timer counter" />
+              </Col>
             </Row>
           </Container>
         </section>
