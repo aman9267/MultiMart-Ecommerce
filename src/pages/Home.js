@@ -14,6 +14,9 @@ import Clock from "../components/UI/Clock";
 const Home = () => {
   const [trendingProduct, setTrendingProduct] = useState([]);
   const [bestSalesProduct, setBestSalesProduct] = useState([]);
+  const [mobileProduct, setMobileProduct] = useState([]);
+  const [wirelessProduct, setWirelessProduct] = useState([]);
+  const [popularProduct, setPopularProduct] = useState([]);
   const year = new Date().getFullYear();
 
   useEffect(() => {
@@ -33,8 +36,35 @@ const Home = () => {
       }
     });
 
+    const filteredMobileProduct = Product?.filter((item) => {
+      if (item.category === "mobile") {
+        return true;
+      } else {
+        return false;
+      }
+    });
+
+    const filteredWirelessProduct = Product?.filter((item) => {
+      if (item.category === "wireless") {
+        return true;
+      } else {
+        return false;
+      }
+    });
+
+    const filteredPopularProduct = Product?.filter((item) => {
+      if (item.category === "watch") {
+        return true;
+      } else {
+        return false;
+      }
+    });
+
     setTrendingProduct(filteredTrendingProduct);
     setBestSalesProduct(filteredBestSalesProduct);
+    setMobileProduct(filteredMobileProduct);
+    setWirelessProduct(filteredWirelessProduct);
+    setPopularProduct(filteredPopularProduct);
   }, []);
 
   return (
@@ -108,6 +138,29 @@ const Home = () => {
               <Col lg="6" md="6" className="text-end">
                 <img src={CounterImage} alt="'Timer counter" />
               </Col>
+            </Row>
+          </Container>
+        </section>
+        {/* New Arrivals */}
+        <section className="new_arrivals">
+          <Container>
+            <Row>
+              <Col lg="12" className="text-center mb-5">
+                <h2 className="section__title">New Arrivals</h2>
+              </Col>
+              <ProductsList data={mobileProduct} />
+              <ProductsList data={wirelessProduct} />
+            </Row>
+          </Container>
+        </section>
+        {/* Popular Category */}
+        <section className="popular__category">
+          <Container>
+            <Row>
+              <Col lg="12" className="text-center mb-5">
+                <h2 className="section__title">Popular in Category</h2>
+              </Col>
+              <ProductsList data={popularProduct} />
             </Row>
           </Container>
         </section>
