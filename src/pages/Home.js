@@ -1,13 +1,40 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Helmet from "../components/Helmet/Helmet";
 import { Container, Row, Col } from "reactstrap";
 import heroImg from "../assets/images/hero-img.png";
 import "../style/home.css";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import Services from "../Services/Services";
+import ProductsList from "../components/UI/ProductsList";
+import Product from "../assets/data/products";
 
 const Home = () => {
+  const [trendingProduct, setTrendingProduct] = useState([]);
+  const [bestSalesProduct, setBestSalesProduct] = useState([]);
   const year = new Date().getFullYear();
+
+  useEffect(() => {
+    const filteredTrendingProduct = Product?.filter((item) => {
+      if (item.category === "chair") {
+        return true;
+      } else {
+        return false;
+      }
+    });
+
+    const filteredBestSalesProduct = Product?.filter((item) => {
+      if (item.category === "sofa") {
+        return true;
+      } else {
+        return false;
+      }
+    });
+
+    setTrendingProduct(filteredTrendingProduct);
+    setBestSalesProduct(filteredBestSalesProduct);
+  }, []);
+
   return (
     <>
       <Helmet title={"Home"}>
@@ -34,6 +61,29 @@ const Home = () => {
                   <img src={heroImg} alt="Hero Banner" />
                 </div>
               </Col>
+            </Row>
+          </Container>
+        </section>
+        <Services />
+        {/* Trending Product */}
+        <section className="trending__product">
+          <Container>
+            <Row>
+              <Col lg="12" className="text-center">
+                <h2 className="section__title">Trending Product</h2>
+              </Col>
+              <ProductsList data={trendingProduct} />
+            </Row>
+          </Container>
+        </section>
+        {/* Best Sale */}
+        <section className="best__sales">
+          <Container>
+            <Row>
+              <Col lg="12" className="text-center">
+                <h2 className="section__title">Best Sales</h2>
+              </Col>
+              <ProductsList data={bestSalesProduct} />
             </Row>
           </Container>
         </section>
