@@ -50,3 +50,28 @@
 .store_btn a:hover {
   color: var(--primary-color);
 }
+
+@media only screen and (max-width: 992px) {
+  .hero__content h2 {
+    font-size: 1.7rem;
+  }
+  .section__title {
+    font-size: 1.7rem;
+  }
+  .counter__image {
+    display: none;
+  }
+  .clock__top__content {
+    text-align: center;
+  }
+  .clock__top__content h4 {
+    font-size: 0.9rem !important;
+  }
+  .clock__top__content h3 {
+    font-size: 1rem !important;
+  }
+  .count__down-col {
+    text-align: center;
+    display: inline-block;
+  }
+}

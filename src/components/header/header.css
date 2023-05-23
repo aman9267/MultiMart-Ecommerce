@@ -150,3 +150,28 @@
     line-height: 60px;
   }
 }
+
+@media only screen and (max-width: 992px) {
+  .header__content h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .header__content h2 {
+    font-size: 1.6rem;
+  }
+  .header__content p {
+    font-size: 0.9rem;
+  }
+  .shop_btn {
+    font-size: 0.9rem;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .header__content {
+    padding: 0;
+    margin-bottom: 40px;
+  }
+}
