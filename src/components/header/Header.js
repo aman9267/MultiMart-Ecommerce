@@ -1,5 +1,5 @@
 import "./header.css";
-import React from "react";
+import React, { useRef } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/images/eco-logo.png";
 import userIcon from "../../assets/images/user-icon.png";
@@ -22,8 +22,12 @@ const nav_Link = [
 ];
 
 const Header = () => {
+  const menuRef = useRef(null);
+  const menuToggle = () => {
+    menuRef.current.classList.toggle("active__menu");
+  };
   return (
-    <header className="header">
+    <header className="header sticky__header">
       <Container>
         <Row>
           <div className="nav__wrapper">
@@ -36,7 +40,13 @@ const Header = () => {
               </div>
             </div>
             {/* Navigation Bar */}
-            <div className="navigation">
+            <div
+              className="navigation"
+              ref={menuRef}
+              onClick={() => {
+                menuToggle();
+              }}
+            >
               <ul className="menu">
                 {nav_Link.map((menu, index) => {
                   return (
@@ -71,13 +81,12 @@ const Header = () => {
                   alt="User Icon"
                 />
               </span>
-            </div>
-
-            {/* Mobile Menu */}
-            <div className="mobile__menu">
-              <span>
-                <i className="ri-menu-line"></i>
-              </span>
+              {/* Mobile Menu */}
+              <div className="mobile__menu">
+                <span onClick={menuToggle}>
+                  <i className="ri-menu-line"></i>
+                </span>
+              </div>
             </div>
           </div>
         </Row>
