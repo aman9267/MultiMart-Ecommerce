@@ -1,9 +1,10 @@
 import React from "react";
+import CommonSection from "../components/UI/CommonSection";
 
 const Cart = () => {
   return (
     <>
-      <h1>CArt Page</h1>
+      <CommonSection title={"Cart"} />
     </>
   );
 };
