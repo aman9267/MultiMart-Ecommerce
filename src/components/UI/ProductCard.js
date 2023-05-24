@@ -3,23 +3,15 @@ import "../../style/product-card.css";
 import { Col } from "reactstrap";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-// import { useDispatch } from "react-redux";
-// import { cartAction } from "../../redux/slices/cartSlices";
+import { useDispatch } from "react-redux";
+import { add } from "../../redux/slices/cartSlices";
 
 const ProductCard = ({ data }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const addToCart = () => {
-  //   dispatch(
-  //     cartAction.addItem({
-  //       id: data.id,
-  //       productName: data.productName,
-  //       image: data.imgUrl,
-  //       price: data.price,
-  //     })
-  //   );
-  //   alert("Product added to cart");
-  // };
+  const handleAdd = (data) => {
+    dispatch(add(data));
+  };
 
   return (
     <>
@@ -39,7 +31,12 @@ const ProductCard = ({ data }) => {
             <span>{data?.category}</span>
             <div className="product__card-bottom d-flex text-align-center justify-content-between">
               <span className="price">Rs. {data?.price}</span>
-              <motion.span whileTap={{ scale: 1.2 }} onClick="">
+              <motion.span
+                whileTap={{ scale: 1.2 }}
+                onClick={() => {
+                  handleAdd(data);
+                }}
+              >
                 <i className="ri-add-line"></i>
               </motion.span>
             </div>

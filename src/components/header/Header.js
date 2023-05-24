@@ -1,10 +1,11 @@
 import "./header.css";
 import React, { useRef } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/images/eco-logo.png";
 import userIcon from "../../assets/images/user-icon.png";
 import { Container, Row } from "reactstrap";
 import { motion } from "framer-motion";
+import { useSelector } from "react-redux";
 
 const nav_Link = [
   {
@@ -22,6 +23,11 @@ const nav_Link = [
 ];
 
 const Header = () => {
+  const ProductItem = useSelector((state) => {
+    return state.cart;
+  });
+
+  console.log(ProductItem);
   const menuRef = useRef(null);
   const menuToggle = () => {
     menuRef.current.classList.toggle("active__menu");
@@ -71,8 +77,10 @@ const Header = () => {
                 <span className="badge">1</span>
               </span>
               <span className="cart__icon">
-                <i className="ri-shopping-bag-line"></i>
-                <span className="badge">1</span>
+                <Link to="/cart">
+                  <i className="ri-shopping-bag-line"></i>
+                  <span className="badge">{ProductItem?.length || 0}</span>
+                </Link>
               </span>
               <span>
                 <motion.img
