@@ -8,21 +8,55 @@ import ProductsList from "../components/UI/ProductsList";
 
 const Shop = () => {
   const [productsData, setProductsData] = useState(products);
-  const [filteredProduct, setFilteredProduct] = useState([]);
 
   const handleFilter = (e) => {
-    console.log(e.target.value);
-    const filteredProduct = productsData.filter((product) => {
-      if (product.category === e.target.value || "mobile") {
-        return true;
+    const filterValue = e.target.value;
+    const filteredProduct = products.filter((item) => {
+      if (filterValue === "mobile") {
+        return item.category === "mobile";
+      } else if (filterValue === "sofa") {
+        return item.category === "sofa";
+      } else if (filterValue === "chair") {
+        return item.category === "chair";
+      } else if (filterValue === "watch") {
+        return item.category === "watch";
+      } else if (filterValue === "wireless") {
+        return item.category === "wireless";
       } else {
         return false;
       }
     });
     setProductsData(filteredProduct);
-    setFilteredProduct(filteredProduct);
+    return filteredProduct;
   };
 
+  const shortBy = (e) => {
+    const filterValue = e.target.value;
+    console.log(filterValue);
+    let price = [];
+
+    const sortFilter = productsData.filter((item) => {
+      if (filterValue === "ascending") {
+        return price.push(item);
+      } else if (filterValue === "descending") {
+        return price.push(item);
+      } else {
+        return false;
+      }
+    });
+    console.log(price);
+    console.log(sortFilter);
+    setProductsData(sortFilter);
+    console.log(price.sort());
+  };
+
+  const searchFilterHanlde = (e) => {
+    const searchTerm = e.target.value;
+    const filteredProduct = products.filter((item) =>
+      item.productName.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setProductsData(filteredProduct);
+  };
   return (
     <>
       <Helmet title="Product">
@@ -45,7 +79,8 @@ const Shop = () => {
               </Col>
               <Col lg="3" md="3">
                 <div className="filter__widget">
-                  <select onChange={handleFilter}>
+                  <select onChange={shortBy}>
+                    <option>Sort By Filter</option>
                     <option value="ascending">Ascending</option>
                     <option value="descending">Descending</option>
                   </select>
@@ -53,7 +88,11 @@ const Shop = () => {
               </Col>
               <Col lg="6" md="6">
                 <div className="search__box">
-                  <input type="search" placeholder="Search ........" />
+                  <input
+                    type="search"
+                    onChange={searchFilterHanlde}
+                    placeholder="Search........"
+                  />
                   <span>
                     <i className="ri-search-line"></i>
                   </span>
@@ -63,19 +102,13 @@ const Shop = () => {
           </Container>
         </section>
         {/* Product Section Area */}
-        <section>
+        <section className="pt-0">
           <Container>
             <Row>
               {productsData?.length === 0 ? (
-                <h1>No Product Are Found</h1>
+                <h1 className="text-center">No Products Found</h1>
               ) : (
-                <ProductsList
-                  data={
-                    filteredProduct.length === 0
-                      ? productsData
-                      : filteredProduct
-                  }
-                />
+                <ProductsList data={productsData} />
               )}
             </Row>
           </Container>

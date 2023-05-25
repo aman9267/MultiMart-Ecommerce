@@ -26,8 +26,6 @@ const Header = () => {
   const ProductItem = useSelector((state) => {
     return state.cart;
   });
-
-  console.log(ProductItem);
   const menuRef = useRef(null);
   const menuToggle = () => {
     menuRef.current.classList.toggle("active__menu");
@@ -38,13 +36,15 @@ const Header = () => {
         <Row>
           <div className="nav__wrapper">
             {/* Header Logo */}
-            <div className="logo">
-              <img src={logo} alt="logo" />
-              <div>
-                <h1>MultiMart</h1>
-                {/* <p>Since 2023</p> */}
+            <Link to="/">
+              <div className="logo">
+                <img src={logo} alt="logo" />
+                <div>
+                  <h1>MultiMart</h1>
+                  {/* <p>Since 2023</p> */}
+                </div>
               </div>
-            </div>
+            </Link>
             {/* Navigation Bar */}
             <div
               className="navigation"
