@@ -26,8 +26,6 @@ const Header = () => {
   const ProductItem = useSelector((state) => {
     return state.cart;
   });
-
-  console.log(ProductItem);
   const menuRef = useRef(null);
   const menuToggle = () => {
     menuRef.current.classList.toggle("active__menu");

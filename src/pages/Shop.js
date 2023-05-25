@@ -8,19 +8,26 @@ import ProductsList from "../components/UI/ProductsList";
 
 const Shop = () => {
   const [productsData, setProductsData] = useState(products);
-  const [filteredProduct, setFilteredProduct] = useState([]);
 
   const handleFilter = (e) => {
-    console.log(e.target.value);
-    const filteredProduct = productsData.filter((product) => {
-      if (product.category === e.target.value || "mobile") {
-        return true;
+    const filterValue = e.target.value;
+    const filteredProduct = products.filter((item) => {
+      if (filterValue === "mobile") {
+        return item.category === "mobile";
+      } else if (filterValue === "sofa") {
+        return item.category === "sofa";
+      } else if (filterValue === "chair") {
+        return item.category === "chair";
+      } else if (filterValue === "watch") {
+        return item.category === "watch";
+      } else if (filterValue === "wireless") {
+        return item.category === "wireless";
       } else {
         return false;
       }
     });
     setProductsData(filteredProduct);
-    setFilteredProduct(filteredProduct);
+    return filteredProduct;
   };
 
   return (
@@ -63,19 +70,13 @@ const Shop = () => {
           </Container>
         </section>
         {/* Product Section Area */}
-        <section>
+        <section className="pt-0">
           <Container>
             <Row>
               {productsData?.length === 0 ? (
-                <h1>No Product Are Found</h1>
+                <h1>No Products Found</h1>
               ) : (
-                <ProductsList
-                  data={
-                    filteredProduct.length === 0
-                      ? productsData
-                      : filteredProduct
-                  }
-                />
+                <ProductsList data={productsData} />
               )}
             </Row>
           </Container>
