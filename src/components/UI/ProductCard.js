@@ -5,12 +5,17 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { add } from "../../redux/slices/cartSlices";
+import { addLike } from "../../redux/slices/likeSlice";
 
 const ProductCard = ({ data }) => {
   const dispatch = useDispatch();
 
   const handleAdd = (data) => {
     dispatch(add(data));
+  };
+
+  const handleLike = (data) => {
+    dispatch(addLike(data));
   };
 
   return (
@@ -31,14 +36,25 @@ const ProductCard = ({ data }) => {
             <span>{data?.category}</span>
             <div className="product__card-bottom d-flex text-align-center justify-content-between">
               <span className="price">Rs. {data?.price}</span>
-              <motion.span
-                whileTap={{ scale: 1.2 }}
-                onClick={() => {
-                  handleAdd(data);
-                }}
-              >
-                <i className="ri-add-line"></i>
-              </motion.span>
+              <div>
+                <motion.span
+                  className="like__icons"
+                  whileTap={{ scale: 1.2 }}
+                  onClick={() => {
+                    handleAdd(data);
+                  }}
+                >
+                  <i className="ri-heart-fill"></i>
+                </motion.span>
+                <motion.span
+                  whileTap={{ scale: 1.2 }}
+                  onClick={() => {
+                    handleLike(data);
+                  }}
+                >
+                  <i className="ri-add-line"></i>
+                </motion.span>
+              </div>
             </div>
           </div>
         </div>
